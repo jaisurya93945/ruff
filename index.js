@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const bgm2Audio = document.getElementById('bgm2');
     const bgm3Audio = document.getElementById('bgm3');
 
-    // Function to start audio playback
-    function startAudio() {
-        // Play bgm1.mp3 once
+    // Play bgm1.mp3 once on user interaction (click)
+    function playBGM1() {
         bgm1Audio.play().then(() => {
             console.log('bgm1.mp3 started playing.');
 
@@ -20,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Call startAudio function when the page is loaded
-    startAudio();
+    // Event listener for user interaction (click)
+    document.addEventListener('click', function() {
+        // Ensure audio playback starts only once per interaction
+        playBGM1();
+
+        // Remove click listener after initial interaction if not needed
+        document.removeEventListener('click', arguments.callee);
+    });
 });
